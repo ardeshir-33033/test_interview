@@ -1,14 +1,19 @@
+import 'errors.dart';
+
+/// we put all data inside this model so that always we know what we are dealing with
 class ResponseModel {
   dynamic data;
-  String? msgType;
+  String? error;
+  int? status;
 
-  ResponseModel({this.data, this.msgType});
+  ResponseModel({this.data, this.error, this.status});
 
-  ResponseModel fromJson(dynamic jsn, String bodyName) {
-    data = jsn[bodyName];
-
-    //to String just to make sure we are always dealing with a string
-    msgType = jsn['msg_type'].toString();
+  ResponseModel fromJson(
+    dynamic jsn,
+  ) {
+    error = jsn['detail'] != null ? jsn['error'] : null;
+    data = jsn['data'];
+    status = jsn["status"];
 
     return this;
   }
