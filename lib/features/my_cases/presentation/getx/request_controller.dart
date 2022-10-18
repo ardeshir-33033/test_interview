@@ -9,6 +9,7 @@ class RequestController extends GetxController {
   RequestController(this._getRequestsUseCase);
 
   RequestHeaderEntity requestHeader = RequestHeaderEntity();
+  String? error;
 
   RequestStatus requestListStatus = RequestStatus();
   @override
@@ -25,10 +26,13 @@ class RequestController extends GetxController {
     if (response.status == 200) {
       requestHeader = response.data;
       requestListStatus.success();
+      update();
     } else {
+      error = response.error;
       requestListStatus.error(
         response.error ?? '',
       );
+      update();
     }
   }
 }

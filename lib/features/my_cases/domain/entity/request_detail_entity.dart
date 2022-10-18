@@ -1,4 +1,5 @@
 class RequestDetailEntity {
+  int? id;
   String? orderId;
   String? fullName;
   String? phoneNumber;
@@ -8,7 +9,8 @@ class RequestDetailEntity {
   String? visitTime;
 
   RequestDetailEntity(
-      {this.orderId,
+      {this.id,
+      this.orderId,
       this.phoneNumber,
       this.status,
       this.fullName,

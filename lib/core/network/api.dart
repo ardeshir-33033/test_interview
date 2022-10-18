@@ -18,7 +18,7 @@ class Api {
   };
 
   Map<String, String> bearerHeader = {
-    HttpHeaders.authorizationHeader: "Bearer ${accessToken ?? ""}",
+    HttpHeaders.authorizationHeader: "jwt ${accessToken ?? ""}",
     "Accept": "application/json",
     "content-type": "application/json; charset=utf-8",
   };

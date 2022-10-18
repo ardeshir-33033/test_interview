@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test_interview/features/my_cases/data/datasource/get_requests_datasource.dart';
 import 'package:test_interview/features/my_cases/data/repository/get_requests_repository_impl.dart';
@@ -12,7 +13,8 @@ final locator = GetIt.instance;
 
 void setup() {
   // *----- GetX -----*
-  locator.registerLazySingleton<RequestController>(() => RequestController(locator()));
+  locator.registerLazySingleton<RequestController>(
+      () => Get.put(RequestController(locator())));
 
   // *----- UseCase -----*
   locator.registerLazySingleton<GetRequestsUseCase>(
