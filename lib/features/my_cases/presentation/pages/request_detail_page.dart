@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_interview/features/my_cases/domain/entity/request_detail_entity.dart';
+import '../components/request_page_components/custom_tabbar.dart';
 
 class RequestDetailPage extends StatelessWidget {
   const RequestDetailPage({Key? key, required this.requestDetailEntity})
@@ -29,44 +30,13 @@ class RequestDetailPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Center(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
-                width: MediaQuery.of(context).size.width / 1.2,
-                decoration: BoxDecoration(
-                    color: const Color(0xff1C4870),
-                    borderRadius: BorderRadius.circular(15.0)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Expanded(
-                      child: Center(
-                        child: Text(
-                          "بیمه بدنه",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(25.0)),
-                        child: const Center(child: Text("بازدید بدنه")),
-                      ),
-                    ),
-                    const Expanded(
-                      child: Center(
-                        child: Text("اعلام خسارت",
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
+            Expanded(
+                child: CustomTabBar(
+              requestDetailEntity: requestDetailEntity,
+            )),
+            const SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),

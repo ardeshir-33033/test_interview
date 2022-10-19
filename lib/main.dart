@@ -42,6 +42,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale("fa", "IR"),
       ],
+      theme: ThemeData(
+        fontFamily: 'IRANSans',
+      ),
       locale: const Locale("fa", "IR"),
       routes: {
         '/home': (context) => RequestListPage(),

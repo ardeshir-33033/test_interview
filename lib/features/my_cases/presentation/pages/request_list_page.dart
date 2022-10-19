@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 import 'package:test_interview/core/utils/request_status.dart';
 import 'package:test_interview/features/my_cases/presentation/components/custom_loading.dart';
 import 'package:test_interview/locator.dart';
-
-import '../components/request_list_items.dart';
+import '../components/request_page_components/request_list_items.dart';
 import '../getx/request_controller.dart';
 
 class RequestListPage extends StatelessWidget {
