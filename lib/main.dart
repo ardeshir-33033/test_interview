@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:test_interview/features/my_cases/domain/entity/request_detail_entity.dart';
+import 'package:test_interview/features/my_cases/domain/entity/request_header_entity.dart';
 import 'package:test_interview/features/my_cases/presentation/pages/request_detail_page.dart';
 import 'package:test_interview/locator.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -48,11 +47,9 @@ class MyApp extends StatelessWidget {
       locale: const Locale("fa", "IR"),
       routes: {
         '/home': (context) => RequestListPage(),
-        '/detail': (context) => RequestDetailPage(
-            requestDetailEntity: ModalRoute.of(context)!.settings.arguments
-                as RequestDetailEntity),
+        '/detail': (context) => RequestDetailPage(),
       },
-      initialRoute: '/home',
+      initialRoute: '/detail',
     );
   }
 }

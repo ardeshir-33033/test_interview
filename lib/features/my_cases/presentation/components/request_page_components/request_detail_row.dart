@@ -11,7 +11,7 @@ class RequestDetailRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -35,9 +35,20 @@ class RequestDetailRow extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            value,
-            style: Constants.rowValueTextStyle,
+          const SizedBox(
+            width: 10.0,
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text(
+                  value,
+                  style: Constants.rowValueTextStyle,
+                ),
+              ),
+            ),
           ),
         ],
       ),

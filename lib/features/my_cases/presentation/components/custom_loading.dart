@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:test_interview/core/constants/constants.dart';
 
 class CustomLoadingAnimation extends StatefulWidget {
   const CustomLoadingAnimation({Key? key}) : super(key: key);
@@ -76,8 +77,8 @@ class _CustomLoadingAnimationState extends State<CustomLoadingAnimation>
                 Transform.translate(
                     offset: Offset(
                         radius * cos(i * pi / 4), radius * sin(i * pi / 4)),
-                    child:
-                    const AnimationCircle(color: Colors.red, radius: 5.0)),
+                    child: AnimationCircle(
+                        color: Constants.navyBlue, radius: 5.0)),
             ],
           ),
         ),

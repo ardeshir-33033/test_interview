@@ -41,6 +41,7 @@ dependencies:
   http: ^0.13.4
   equatable: ^2.0.5
   easy_localization: ^3.0.0
+  circular_bottom_navigation: ^2.2.0
 
 
 dev_dependencies:

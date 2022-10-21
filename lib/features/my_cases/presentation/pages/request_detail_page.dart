@@ -1,16 +1,67 @@
+import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
+import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
-import 'package:test_interview/features/my_cases/domain/entity/request_detail_entity.dart';
+import 'package:get/get.dart';
+import 'package:test_interview/features/my_cases/presentation/components/request_page_components/paging_widget.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/utils/request_status.dart';
+import '../../../../locator.dart';
+import '../components/custom_loading.dart';
 import '../components/request_page_components/custom_tabbar.dart';
+import '../getx/request_controller.dart';
 
-class RequestDetailPage extends StatelessWidget {
-  const RequestDetailPage({Key? key, required this.requestDetailEntity})
-      : super(key: key);
+class RequestDetailPage extends StatefulWidget {
+  const RequestDetailPage({Key? key}) : super(key: key);
 
-  final RequestDetailEntity requestDetailEntity;
+  @override
+  State<RequestDetailPage> createState() => _RequestDetailPageState();
+}
+
+class _RequestDetailPageState extends State<RequestDetailPage> {
+  int selectedPos = 0;
+
+  final CircularBottomNavigationController _navigationController =
+      CircularBottomNavigationController(0);
+
+  final RequestController requestController = locator<RequestController>();
+
+  List<TabItem> tabItems = List.of([
+    TabItem(
+      Icons.home,
+      "پرونده های من",
+      Colors.white,
+      labelStyle: const TextStyle(
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+    TabItem(
+      Icons.layers,
+      "خانه",
+      Colors.white,
+    ),
+    TabItem(
+      Icons.notifications,
+      "ارسال نواقص",
+      Colors.white,
+    ),
+  ]);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CircularBottomNavigation(
+        tabItems,
+        controller: _navigationController,
+        barHeight: 50,
+        circleSize: 40,
+        iconsSize: 20,
+        selectedIconColor: Constants.navyBlue,
+        barBackgroundColor: Colors.white,
+        backgroundBoxShadow: const <BoxShadow>[
+          BoxShadow(color: Colors.black45, blurRadius: 5.0),
+        ],
+        animationDuration: const Duration(milliseconds: 300),
+      ),
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -23,23 +74,26 @@ class RequestDetailPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Expanded(
-                child: CustomTabBar(
-              requestDetailEntity: requestDetailEntity,
-            )),
-            const SizedBox(
-              height: 30,
-            ),
-          ],
-        ),
-      ),
+      body: GetBuilder<RequestController>(builder: (logic) {
+        return SafeArea(
+          child: requestController.requestListStatus.status == Status.Loading
+              ? const Center(child: CustomLoadingAnimation())
+              : requestController.requestListStatus.status == Status.Success
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Expanded(
+                            child: CustomTabBar(
+                          requestHeaderEntity: requestController.requestHeader,
+                        )),
+                      ],
+                    )
+                  : Text(requestController.error ?? ""),
+        );
+      }),
     );
   }
 }

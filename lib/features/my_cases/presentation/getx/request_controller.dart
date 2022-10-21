@@ -18,11 +18,11 @@ class RequestController extends GetxController {
     super.onInit();
   }
 
-  getRequests() async {
+  getRequests({int? page}) async {
     requestListStatus.loading();
     update();
     ResponseModel response =
-        await _getRequestsUseCase(Params(page: 1, tab: "issuance"));
+        await _getRequestsUseCase(Params(page: page ?? 1, tab: "issuance"));
     if (response.status == 200) {
       requestHeader = response.data;
       requestListStatus.success();

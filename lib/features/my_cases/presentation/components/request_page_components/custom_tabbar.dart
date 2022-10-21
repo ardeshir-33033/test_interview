@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:test_interview/features/my_cases/domain/entity/request_header_entity.dart';
+import 'package:test_interview/features/my_cases/presentation/components/request_page_components/paging_widget.dart';
 import 'package:test_interview/features/my_cases/presentation/components/request_page_components/request_detail_item.dart';
 
-import '../../../domain/entity/request_detail_entity.dart';
-
 class CustomTabBar extends StatefulWidget {
-  final RequestDetailEntity requestDetailEntity;
-  const CustomTabBar({super.key, required this.requestDetailEntity});
+  final RequestHeaderEntity requestHeaderEntity;
+  const CustomTabBar({super.key, required this.requestHeaderEntity});
   @override
   _CustomTabBarState createState() => _CustomTabBarState();
 }
@@ -67,7 +67,6 @@ class _CustomTabBarState extends State<CustomTabBar>
               ],
             ),
           ),
-          // tab bar view here
           Expanded(
             child: TabBarView(
               controller: _tabController,
@@ -81,8 +80,31 @@ class _CustomTabBarState extends State<CustomTabBar>
                     ),
                   ),
                 ),
-                RequestDetailItem(
-                    requestDetailEntity: widget.requestDetailEntity),
+                Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount:
+                              widget.requestHeaderEntity.results!.length + 1,
+                          itemBuilder: (context, int index) {
+                            if (index ==
+                                widget.requestHeaderEntity.results!.length) {
+                              return PagingWidget(widget.requestHeaderEntity);
+                            } else {
+                              return RequestDetailItem(
+                                  requestDetailEntity: widget
+                                      .requestHeaderEntity.results![index]);
+                            }
+                          }),
+                    ),
+                  ],
+                ),
+                // ListView(
+                //   children: [
+                //     RequestDetailItem(
+                //         requestDetailEntity: widget.requestDetailEntity),
+                //   ],
+                // ),
                 const Center(
                   child: Text(
                     "در دست ساخت",
