@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_interview/core/constants/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EnterButton extends StatefulWidget {
   const EnterButton({Key? key, required this.status}) : super(key: key);
@@ -40,7 +41,7 @@ class _EnterButtonState extends State<EnterButton> {
                 borderRadius: BorderRadius.circular(5.0),
                 border: Border.all(color: Constants.navyBlue, width: 2)),
             child: Text(
-              "ورود به صفحه پرونده",
+              AppLocalizations.of(context)!.enter,
               style: TextStyle(color: Constants.navyBlue),
             ),
           ),
@@ -52,9 +53,9 @@ class _EnterButtonState extends State<EnterButton> {
                       color: const Color(0xFF1CAE81),
                       size: MediaQuery.of(context).size.width / 9,
                     ),
-                    const Text("انجام شد.",
-                        style:
-                            TextStyle(color: Color(0xFF1CAE81), fontSize: 10)),
+                    Text(AppLocalizations.of(context)!.done,
+                        style: const TextStyle(
+                            color: Color(0xFF1CAE81), fontSize: 10)),
                   ],
                 )
               : const Text("")

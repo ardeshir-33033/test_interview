@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:test_interview/features/my_cases/domain/entity/request_header_entity.dart';
 import 'package:test_interview/features/my_cases/presentation/pages/request_detail_page.dart';
 import 'package:test_interview/locator.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/network/api.dart';
-import 'features/my_cases/presentation/pages/request_list_page.dart';
+import 'l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -33,21 +33,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: L10n.all,
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale("fa", "IR"),
-      ],
       theme: ThemeData(
         fontFamily: 'IRANSans',
       ),
-      locale: const Locale("fa", "IR"),
+      locale: const Locale("fa"),
       routes: {
-        '/home': (context) => RequestListPage(),
-        '/detail': (context) => RequestDetailPage(),
+        '/detail': (context) => const RequestDetailPage(),
       },
       initialRoute: '/detail',
     );

@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:test_interview/core/constants/constants.dart';
 import 'package:test_interview/features/my_cases/presentation/components/request_page_components/request_detail_row.dart';
+import 'package:test_interview/features/my_cases/presentation/components/request_page_components/search_widget.dart';
 import '../../../domain/entity/request_detail_entity.dart';
 import 'enter_button.dart';
 import 'status_detail_box.dart';
@@ -18,6 +21,7 @@ class RequestDetailItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+
           Container(
             width: MediaQuery.of(context).size.width / 1.1,
             height: MediaQuery.of(context).size.height / 1.8,

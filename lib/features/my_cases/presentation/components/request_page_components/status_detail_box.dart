@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_interview/core/constants/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatusDetailBox extends StatelessWidget {
   const StatusDetailBox(
@@ -38,7 +39,7 @@ class StatusDetailBox extends StatelessWidget {
                     width: 5,
                   ),
                   Text(
-                    "وضعیت پرونده",
+                    AppLocalizations.of(context)!.caseStatus,
                     style: Constants.rowTextStyle,
                   ),
                 ],
@@ -66,7 +67,7 @@ class StatusDetailBox extends StatelessWidget {
                     width: 5.0,
                   ),
                   Text(
-                    "زمان بازدید",
+                    AppLocalizations.of(context)!.visitTime,
                     style: Constants.rowTextStyle,
                   ),
                 ],

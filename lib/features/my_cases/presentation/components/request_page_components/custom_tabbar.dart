@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:test_interview/features/my_cases/domain/entity/request_header_entity.dart';
 import 'package:test_interview/features/my_cases/presentation/components/request_page_components/paging_widget.dart';
 import 'package:test_interview/features/my_cases/presentation/components/request_page_components/request_detail_item.dart';
+import 'package:test_interview/features/my_cases/presentation/components/request_page_components/search_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomTabBar extends StatefulWidget {
   final RequestHeaderEntity requestHeaderEntity;
@@ -54,15 +56,15 @@ class _CustomTabBarState extends State<CustomTabBar>
               unselectedLabelColor: Colors.white,
               labelStyle:
                   TextStyle(fontSize: MediaQuery.of(context).size.width / 30),
-              tabs: const [
+              tabs: [
                 Tab(
-                  text: 'بیمه بدنه',
+                  text: AppLocalizations.of(context)!.insurance,
                 ),
                 Tab(
-                  text: 'بازدید بدنه',
+                  text: AppLocalizations.of(context)!.bodyReview,
                 ),
                 Tab(
-                  text: 'خسارت',
+                  text: AppLocalizations.of(context)!.damage,
                 ),
               ],
             ),
@@ -71,10 +73,10 @@ class _CustomTabBarState extends State<CustomTabBar>
             child: TabBarView(
               controller: _tabController,
               children: [
-                const Center(
+                Center(
                   child: Text(
-                    "در دست ساخت",
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.beingBuilt,
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
                     ),
@@ -82,6 +84,13 @@ class _CustomTabBarState extends State<CustomTabBar>
                 ),
                 Column(
                   children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SearchWidget(),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Expanded(
                       child: ListView.builder(
                           itemCount:
@@ -99,16 +108,10 @@ class _CustomTabBarState extends State<CustomTabBar>
                     ),
                   ],
                 ),
-                // ListView(
-                //   children: [
-                //     RequestDetailItem(
-                //         requestDetailEntity: widget.requestDetailEntity),
-                //   ],
-                // ),
-                const Center(
+                Center(
                   child: Text(
-                    "در دست ساخت",
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.beingBuilt,
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
                     ),

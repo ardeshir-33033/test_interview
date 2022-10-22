@@ -2,13 +2,13 @@ import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_interview/features/my_cases/presentation/components/request_page_components/paging_widget.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/utils/request_status.dart';
 import '../../../../locator.dart';
 import '../components/custom_loading.dart';
 import '../components/request_page_components/custom_tabbar.dart';
 import '../getx/request_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RequestDetailPage extends StatefulWidget {
   const RequestDetailPage({Key? key}) : super(key: key);
@@ -18,33 +18,10 @@ class RequestDetailPage extends StatefulWidget {
 }
 
 class _RequestDetailPageState extends State<RequestDetailPage> {
-  int selectedPos = 0;
-
   final CircularBottomNavigationController _navigationController =
       CircularBottomNavigationController(0);
 
   final RequestController requestController = locator<RequestController>();
-
-  List<TabItem> tabItems = List.of([
-    TabItem(
-      Icons.home,
-      "پرونده های من",
-      Colors.white,
-      labelStyle: const TextStyle(
-        fontWeight: FontWeight.normal,
-      ),
-    ),
-    TabItem(
-      Icons.layers,
-      "خانه",
-      Colors.white,
-    ),
-    TabItem(
-      Icons.notifications,
-      "ارسال نواقص",
-      Colors.white,
-    ),
-  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +43,7 @@ class _RequestDetailPageState extends State<RequestDetailPage> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         toolbarHeight: MediaQuery.of(context).size.height / 8,
-        title: const Text("پرونده های من"),
+        title: Text(AppLocalizations.of(context)!.myCases),
         backgroundColor: const Color(0xff1C4870),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -83,7 +60,7 @@ class _RequestDetailPageState extends State<RequestDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const SizedBox(
-                          height: 30,
+                          height: 15,
                         ),
                         Expanded(
                             child: CustomTabBar(
@@ -96,4 +73,25 @@ class _RequestDetailPageState extends State<RequestDetailPage> {
       }),
     );
   }
+
+  List<TabItem> tabItems = List.of([
+    TabItem(
+      Icons.home,
+      "پرونده های من",
+      Colors.white,
+      labelStyle: const TextStyle(
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+    TabItem(
+      Icons.layers,
+      "خانه",
+      Colors.white,
+    ),
+    TabItem(
+      Icons.notifications,
+      "ارسال نواقص",
+      Colors.white,
+    ),
+  ]);
 }

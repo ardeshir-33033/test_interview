@@ -42,4 +42,14 @@ class RequestHeader extends RequestHeaderEntity {
     }
     return data;
   }
+
+  static final RequestHeader requestHeaderForTest = RequestHeader(
+    current: 1,
+    pageCount: 2,
+    pageSize: 10,
+    count: 3,
+    next: "sss",
+    previous: "sss",
+    results: [],
+  );
 }

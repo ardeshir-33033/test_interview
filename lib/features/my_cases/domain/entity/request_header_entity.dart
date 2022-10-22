@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import '../../data/models/request_model.dart';
 
-class RequestHeaderEntity {
+class RequestHeaderEntity extends Equatable {
   int? current;
   int? pageCount;
   String? next;
@@ -9,4 +11,13 @@ class RequestHeaderEntity {
 
   RequestHeaderEntity(
       {this.current, this.next, this.pageCount, this.previous, this.results});
+
+  @override
+  List<Object?> get props => [
+        current,
+        pageCount,
+        next,
+        previous,
+        results,
+      ];
 }
